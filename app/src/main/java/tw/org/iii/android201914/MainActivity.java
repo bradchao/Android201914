@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
         fs[0] = new P0();fs[1] = new P1();fs[2] = new P2();
         fs[3] = new P3();fs[4] = new P4();
 
-        initActionBar();
 
         viewPager = findViewById(R.id.viewPager);
+        initActionBar();
+        
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(1);
                 }else if (position==4){
                     viewPager.setCurrentItem(3);
+                }else{
+                    actionBar.setSelectedNavigationItem(position-1);
                 }
             }
         });
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+            viewPager.setCurrentItem(tab.getPosition()+1);
         }
 
         @Override
