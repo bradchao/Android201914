@@ -44,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test1(View view) {
+        viewPager.setCurrentItem(0);
     }
     public void test2(View view) {
+        viewPager.setCurrentItem(1);
     }
     public void test3(View view) {
+        viewPager.setCurrentItem(2);
     }
 }
