@@ -12,11 +12,14 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
+    private Fragment[] fs = new Fragment[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fs[0] = new P1();fs[1] = new P2();fs[2] = new P3();
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -31,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            return null;
+            return fs[position];
         }
 
         @Override
         public int getCount() {
-            return 0;
+            return fs.length;
         }
     }
 
