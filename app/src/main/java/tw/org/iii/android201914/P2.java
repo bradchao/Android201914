@@ -79,9 +79,14 @@ public class P2 extends Fragment {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if (velocityY > 1000){
                 // Down
+                viewFlipper.setInAnimation(activity, R.anim.updown_show);
+                viewFlipper.setOutAnimation(activity, R.anim.updown_hide);
+
                 viewFlipper.showNext();
             }else if (velocityY < -1000){
                 // Up
+                viewFlipper.setInAnimation(activity, R.anim.downup_show);
+                viewFlipper.setOutAnimation(activity, R.anim.downup_hide);
                 viewFlipper.showPrevious();
             }
 
