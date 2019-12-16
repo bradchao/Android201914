@@ -43,6 +43,22 @@ public class P2 extends Fragment {
                     return true;
                 }
             });
+            f2.setOnTouchListener(new View.OnTouchListener() {
+                GestureDetector gd = new GestureDetector(activity, new MyFlipperListener());
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    gd.onTouchEvent(event);
+                    return true;
+                }
+            });
+            f3.setOnTouchListener(new View.OnTouchListener() {
+                GestureDetector gd = new GestureDetector(activity, new MyFlipperListener());
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    gd.onTouchEvent(event);
+                    return true;
+                }
+            });
 
         }
         return mainView;
@@ -55,19 +71,20 @@ public class P2 extends Fragment {
 
         @Override
         public boolean onDown(MotionEvent e) {
-            Log.v("brad", "onDown");
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            Log.v("brad", "onScroll");
+            //Log.v("brad", "onDown");
             return false;
         }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            Log.v("brad", "onFling");
+            if (velocityY > 1000){
+                // Down
+                viewFlipper.showNext();
+            }else if (velocityY < -1000){
+                // Up
+                viewFlipper.showPrevious();
+            }
+
             return false;
         }
     }
