@@ -1,6 +1,7 @@
 package tw.org.iii.android201914;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.viewPager);
         initActionBar();
-        
+
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
@@ -92,6 +93,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return fs.length;
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            String title = "";
+            if (position>=1 && position <= 3){
+                title = "Page" + position;
+            }
+            return title;
         }
     }
 
