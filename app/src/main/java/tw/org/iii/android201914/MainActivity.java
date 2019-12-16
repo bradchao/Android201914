@@ -12,17 +12,30 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
-    private Fragment[] fs = new Fragment[3];
+    private Fragment[] fs = new Fragment[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fs[0] = new P1();fs[1] = new P2();fs[2] = new P3();
+        fs[0] = new P0();fs[1] = new P1();fs[2] = new P2();
+        fs[3] = new P3();fs[4] = new P4();
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                if (position == 0){
+                    viewPager.setCurrentItem(1);
+                }else if (position==4){
+                    viewPager.setCurrentItem(3);
+                }
+            }
+        });
+        viewPager.setCurrentItem(1);
     }
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
@@ -44,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test1(View view) {
-        viewPager.setCurrentItem(0);
-    }
-    public void test2(View view) {
         viewPager.setCurrentItem(1);
     }
-    public void test3(View view) {
+    public void test2(View view) {
         viewPager.setCurrentItem(2);
+    }
+    public void test3(View view) {
+        viewPager.setCurrentItem(3);
     }
 }
